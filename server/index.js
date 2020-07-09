@@ -2,7 +2,10 @@ const express = require('express');
 
 const app = express();
 const port = 3004;
+const compression = require('compression');
 const models = require('./models.js');
+
+app.use(compression());
 
 app.use('/reviews', express.static('public'));
 
