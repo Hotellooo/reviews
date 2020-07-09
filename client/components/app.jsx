@@ -240,13 +240,13 @@ class App extends React.Component {
                   <li>
                     <label>
                       <input name="7" type="checkbox" checked={this.state.filters.month_of_stay['7']} onChange={(e) => this.handleChange(e, 'month_of_stay')} />
-                      Jul-Sep
+                      Jul - Sep
                     </label>
                   </li>
                   <li>
                     <label>
                       <input name="10" type="checkbox" checked={this.state.filters.month_of_stay['10']} onChange={(e) => this.handleChange(e, 'month_of_stay')} />
-                      Oct-Dec
+                      Oct - Dec
                     </label>
                   </li>
                 </ul>
