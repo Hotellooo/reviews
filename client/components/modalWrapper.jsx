@@ -15,10 +15,10 @@ const ModalWrapper = styled.div`
   z-index: 2000;
   width: ${props => {
     switch (props.modalSize) {
-      case "lg":
-        return "800";
+      case 'lg':
+        return '800';
       default:
-        return "480";
+        return '480';
     }
   }}px;
   margin: 40px auto;

@@ -61,5 +61,4 @@ describe('Modal', () => {
     wrapper.find('div.box-footer').first().simulate('click', { preventDefault: jest.fn() });
     expect(spy).toHaveBeenCalled();
   });
-
 });

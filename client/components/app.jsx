@@ -55,7 +55,7 @@ class App extends React.Component {
   componentDidMount() {
     $.ajax({
       url: `/reviews/${this.props.hotelId}`,
-      method: "GET",
+      method: 'GET',
       success: (data) => { this.setState({ reviews: JSON.parse(data) }); },
       error: () => console.log('Error retrieving data from server'),
     });
@@ -161,21 +161,15 @@ class App extends React.Component {
     return (
       <AppWrapper excellent={excellent} veryGood={veryGood} average={average} poor={poor} terrible={terrible} total={products.length}>
         <div className="app">
-
           <div className="top-portion">
-
             <div className="header">
               <div className="header-text"><h1>Reviews</h1></div>
-
               <div className="modal">
                 <input type="submit" value="Write a review" onClick={this.toggleModal} />
                 {this.state.isModalOpen ? <Modal id="modal" isOpen={this.state.isModalOpen} onClose={this.toggleModal} /> : null}
               </div>
-
             </div>
-
             <div className="filters">
-
               <div className="traveler_rating">
                 <ul>
                   <div className="filter-header">Traveler rating</div>
@@ -184,7 +178,7 @@ class App extends React.Component {
                       <input name="5" type="checkbox" checked={this.state.filters.overall_rating['5']} onChange={(e) => this.handleChange(e, 'overall_rating')} />
                       Excellent
                     </label>
-                    <div className="prog-container"><div className="prog-excellent"></div></div>
+                    <div className="prog-container"><div className="prog-excellent" /></div>
                     <span>{excellent}</span>
                   </li>
                   <li>
@@ -192,7 +186,7 @@ class App extends React.Component {
                       <input name="4" type="checkbox" checked={this.state.filters.overall_rating['4']} onChange={(e) => this.handleChange(e, 'overall_rating')} />
                       Very Good
                     </label>
-                    <div className="prog-container"><div className="prog-veryGood"></div></div>
+                    <div className="prog-container"><div className="prog-veryGood" /></div>
                     <span>{veryGood}</span>
                   </li>
                   <li>
@@ -200,7 +194,7 @@ class App extends React.Component {
                       <input name="3" type="checkbox" checked={this.state.filters.overall_rating['3']} onChange={(e) => this.handleChange(e, 'overall_rating')} />
                       Average
                     </label>
-                    <div className="prog-container"><div className="prog-average"></div></div>
+                    <div className="prog-container"><div className="prog-average" /></div>
                     <span>{average}</span>
                   </li>
                   <li>
@@ -208,7 +202,7 @@ class App extends React.Component {
                       <input name="2" type="checkbox" checked={this.state.filters.overall_rating['2']} onChange={(e) => this.handleChange(e, 'overall_rating')} />
                       Poor
                     </label>
-                    <div className="prog-container"><div className="prog-poor"></div></div>
+                    <div className="prog-container"><div className="prog-poor" /></div>
                     <span>{poor}</span>
                   </li>
                   <li>
@@ -221,7 +215,6 @@ class App extends React.Component {
                   </li>
                 </ul>
               </div>
-
               <div className="time_of_year">
                 <ul>
                   <div className="filter-header">Time of year</div>
@@ -251,9 +244,7 @@ class App extends React.Component {
                   </li>
                 </ul>
               </div>
-
               <div className="traveler_type">
-
                 <ul>
                   <div className="filter-header">Traveler type</div>
                   <li>
@@ -288,22 +279,16 @@ class App extends React.Component {
                   </li>
                 </ul>
               </div>
-
             </div>
-
           </div>
-
           <div className="search">
-
             <div className="search-icon-container">
               <img src="https://cdn.pixabay.com/photo/2017/01/13/01/22/magnifying-glass-1976105_960_720.png" className="search-icon" alt="search-icon" />
             </div>
             <div className="search-bar">
               <input name="searchTerm" type="text" placeholder="Search reviews" value={this.state.filters.search.searchTerm} onChange={(e) => this.handleSearch(e)} />
             </div>
-
           </div>
-
           <div className="reviews">
             <ul>
               {this.productsToSearch().map((review) => <Review reviewData={review} />)}

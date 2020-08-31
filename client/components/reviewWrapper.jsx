@@ -5,14 +5,12 @@ const ReviewWrapper = styled.div`
     --star-size: 12px;
     --star-color: #fff;
     --star-background: #00aa6c;
-
     background-color: rgb(249, 249, 249);
     padding: 8px;
     display: inline-block;
     font-size: var(--star-size);
     font-family: Times; // make sure ★ appears correctly
     line-height: 1;
-
     &::before {
       content: '⬤⬤⬤⬤⬤';
       letter-spacing: 1px;
