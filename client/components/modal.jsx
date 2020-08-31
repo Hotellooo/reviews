@@ -21,7 +21,7 @@ class Modal extends React.Component {
     setTimeout(() => this.setState({ fadeType: 'in' }), 0);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (!this.props.isOpen && prevProps.isOpen) {
       this.setState({ fadeType: 'out' });
     }
@@ -53,7 +53,7 @@ class Modal extends React.Component {
       <ModalWrapper
         id={this.props.id}
         className={`wrapper ${"size-" + this.props.modalSize} fade-${this.state.fadeType}`}
-        role='dialog'
+        role="dialog"
         modalSize={this.props.modalSize}
         onTransitionEnd={this.transitionEnd}
       >
@@ -68,7 +68,7 @@ class Modal extends React.Component {
               Your overall rating
               <br />
               <select>
-              <option value="null"></option>
+                <option value="null" />
                 <option value="5">Excellent</option>
                 <option value="4">Very good</option>
                 <option value="3">Average</option>
@@ -82,7 +82,6 @@ class Modal extends React.Component {
               <br/>
               <textarea className="main-review-input" type="text" placeholder="Tell people about your experience: your room, location, amenities?" />
             </label>
-
             <form className="radio-form">
               What sort of trip was this?
               <br />

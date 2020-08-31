@@ -30,10 +30,8 @@ const mockData = {
 };
 
 describe('Review', () => {
-
   it('renders', () => {
     const wrapper = shallow(<Review reviewData={mockData} />);
     expect(wrapper.exists()).toBe(true);
   });
-
 });

@@ -40,26 +40,4 @@ CREATE TABLE reviews (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE questions (
-  id int NOT NULL auto_increment,
-  user_id int NOT NULL,
-  hotel_id int NOT NULL,
-  question_date TIMESTAMP NOT NULL,
-  question_body text(20000) NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE answers (
-  id int NOT NULL auto_increment,
-  question_id int NOT NULL,
-  answerer_user_id int NOT NULL,
-  answer_body text(20000) NOT NULL,
-  thumbs_up_count int DEFAULT 0,
-  thumbs_down_count int DEFAULT 0,
-  PRIMARY KEY (id)
-);
-
 -- To execute: mysql -u root < ./database/schema.sql
--- Kill answer date -- stretch feature
--- Killing UNIQUE from hotel_name (hotels table), username (users table), below constraint (reviews table)
--- CONSTRAINT one_review_per_user_per_hotel UNIQUE (user_id, hotel_id)

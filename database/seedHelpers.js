@@ -21,7 +21,6 @@ const generateReviewBody = () => {
 };
 
 const generateRoomTip = () => {
-  // some people might not have tips, but assume everyone does at first
   const commands = ['Do not forget to', 'Make sure to', 'Always', 'You might want to', 'I would advise everyone to', 'Never forget to', 'It is always recommended that you', 'Do not', 'Never'];
   const randomCommand = commands[getRandomIndex(commands.length)];
   const actions = ['try the snacks', 'hang out in the lobby', 'eat at the hotel restaurant', 'go swimming', 'ask for an upgrade', 'request a tour of the facilities', 'ask for local restaurant recommendations', 'tip the maids', 'use the mini bar', 'check out the bar'];
@@ -44,7 +43,6 @@ const generateUserName = () => {
 };
 
 const generateCity = () => {
-  // cities only at first; could expand to states
   const city = ['Los Angeles', 'San Francisco', 'Dallas', 'Houston', 'Fort Worth', 'Louisville', 'New Orleans', 'San Diego', 'Chicago', 'St. Louis', 'Denver', 'Boise', 'Indianapolis', 'Jacksonville', 'Tampa', 'Miami', 'New York City', 'Nashville', 'Huntsville', 'Oklahoma City', 'Phoenix'];
   const randomCity = city[getRandomIndex(city.length)];
   return randomCity;
@@ -65,22 +63,6 @@ const generateRating = () => Math.floor(Math.random() * 5) + 1;
 const generateDate = (start) => {
   const end = new Date();
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-};
-
-// QUESTIONS
-
-const generateQuestionBody = () => {
-  const opener = ['Do they have', 'Anyone know if they have', 'By chance, do they have', 'I was wondering... do they have'];
-  const randomOpener = opener[getRandomIndex(opener.length)];
-  const amenity = ['fresh fruit', 'entertainment on site', 'complimentary breakfast', 'any grocery stores nearby', 'any historic landmarks nearby', 'a concierge desk', 'free parking', 'a valet service', 'a onsite gym', 'a business center', 'any good pizza nearby', 'a business center', 'a bar'];
-  const randomAmenity = amenity[getRandomIndex(amenity.length)];
-  return `${randomOpener} ${randomAmenity}?`;
-};
-
-const generateAnswerBody = () => {
-  const answerBody = ['I believe so. I recommend double checking with them.', 'Absolutely!', 'No, but check with front desk to see if anything has changed.', 'You betcha. Have a great stay!'];
-  const randomAnswerBody = answerBody[getRandomIndex(answerBody.length)];
-  return randomAnswerBody;
 };
 
 // HOTELS
@@ -104,8 +86,6 @@ const seedHotels = (callback) => {
     const queryArgs = [generateHotelName(), generateCity()];
     hotelTasks.push(queryArgs);
   }
-  console.log(hotelTasks);
-  console.log(hotelTasks.length);
   db.query(sql, [hotelTasks], (err) => {
     if (err) {
       console.log(`error: ${err}`);
@@ -124,8 +104,6 @@ const seedUsers = (callback) => {
     const queryArgs = [generateUserName(), generateUserAvatar(), generateCity(), generateNumber(30), generateNumber(30)];
     userTasks.push(queryArgs);
   }
-  console.log(userTasks);
-  console.log(userTasks.length);
   db.query(sql, [userTasks], (err) => {
     if (err) {
       console.log(`error: ${err.message}`);
@@ -157,53 +135,6 @@ const seedReviews = (callback) => {
   });
 };
 
-const seedQuestions = (callback) => {
-  const sql = 'INSERT INTO questions(user_id, hotel_id, question_date, question_body) VALUES ?';
-  const questionTasks = [];
-  // for each hotel id
-  for (let i = 0; i < numberOfHotels; i++) {
-    // generate random number of reviews needed
-    const questionsPerHotel = generateNumber(40);
-    for (let x = 0; x < questionsPerHotel; x++) {
-      const questionDate = generateDate(new Date(2010, 0, 1));
-      const queryArgs = [generateNumber(numberOfUsers), i, questionDate, generateQuestionBody()];
-      questionTasks.push(queryArgs);
-    }
-  }
-  db.query(sql, [questionTasks], (err) => {
-    if (err) {
-      console.log(`error: ${err.message}`);
-    } else {
-      callback();
-    }
-  });
-};
-
-const seedAnswers = (numberQuestionIds, callback) => {
-  const sql = 'INSERT INTO answers(question_id, answerer_user_id, answer_body, thumbs_up_count, thumbs_down_count) VALUES ?';
-  const answerTasks = [];
-  // for each hotel id
-  for (let i = 0; i < numberQuestionIds; i++) {
-    // generate random number of reviews needed
-    const answersPerQuestion = generateNumber(2);
-    for (let x = 0; x < answersPerQuestion; x++) {
-      // make answerDate an advanced feature -- requires coordination amongst tables
-      // let answerDate = generateDate(new Date(2010, 0, 1));
-      const queryArgs = [i, generateNumber(numberOfUsers), generateAnswerBody(), generateNumber(10), generateNumber(2)];
-      answerTasks.push(queryArgs);
-    }
-  }
-  db.query(sql, [answerTasks], (err) => {
-    if (err) {
-      console.log(`error: ${err.message}`);
-    } else {
-      callback();
-    }
-  });
-};
-
 seedHotels(() => console.log('Seeded hotels'));
 seedUsers(() => console.log('Seeded users'));
 seedReviews(() => console.log('Seeded reviews'));
-seedQuestions(() => console.log('Seeded questions'));
-seedAnswers(50, () => console.log('Seeded answers'));

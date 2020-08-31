@@ -1,8 +1,7 @@
-import App from '../client/components/app.jsx';
 import renderer from 'react-test-renderer';
+import App from '../client/components/app.jsx';
 
 describe('App', () => {
-
   it('renders', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.exists()).toBe(true);
@@ -44,11 +43,11 @@ describe('App', () => {
           "user_city": "Indianapolis",
           "user_contributions": 30,
           "user_helpful_votes": 12
-        }
+        },
       ];
-    return {
-      ajax: jest.fn((exampleReviews) => this.setState({reviews: exampleReviews}))
-      }
+      return {
+        ajax: jest.fn((exampleReviews) => this.setState({ reviews: exampleReviews })),
+      };
     });
     const wrapper = shallow(<App />);
     wrapper.instance().componentDidMount();
@@ -59,7 +58,7 @@ describe('App', () => {
   it('user selects excellect rating', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="traveler_rating"] input[name="5"]').simulate('change', {
-      target: {name: "5"}
+      target: { name: "5" },
     });
     expect(wrapper.state()["filters"]["overall_rating"]["5"]).toBe(true);
   });
@@ -67,7 +66,7 @@ describe('App', () => {
   it('user selects very good rating', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="traveler_rating"] input[name="4"]').simulate('change', {
-      target: {name: "4"}
+      target: { name: "4" },
     });
     expect(wrapper.state()["filters"]["overall_rating"]["4"]).toBe(true);
   });
@@ -75,7 +74,7 @@ describe('App', () => {
   it('user selects average rating', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="traveler_rating"] input[name="3"]').simulate('change', {
-      target: {name: "3"}
+      target: { name: "3" },
     });
     expect(wrapper.state()["filters"]["overall_rating"]["3"]).toBe(true);
   });
@@ -83,7 +82,7 @@ describe('App', () => {
   it('user selects poor rating', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="traveler_rating"] input[name="2"]').simulate('change', {
-      target: {name: "2"}
+      target: { name: "2" },
     });
     expect(wrapper.state()["filters"]["overall_rating"]["2"]).toBe(true);
   });
@@ -91,7 +90,7 @@ describe('App', () => {
   it('user selects terrible rating', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="traveler_rating"] input[name="1"]').simulate('change', {
-      target: {name: "1"}
+      target: { name: "1" },
     });
     expect(wrapper.state()["filters"]["overall_rating"]["1"]).toBe(true);
   });
@@ -100,7 +99,7 @@ describe('App', () => {
   it('user selects Jan-Mar', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="time_of_year"] input[name="1"]').simulate('change', {
-      target: {name: "1"}
+      target: { name: "1" },
     });
     expect(wrapper.state()["filters"]["month_of_stay"]["1"]).toBe(true);
   });
@@ -108,7 +107,7 @@ describe('App', () => {
   it('user selects Apr-Jun', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="time_of_year"] input[name="4"]').simulate('change', {
-      target: {name: "4"}
+      target: { name: "4" },
     });
     expect(wrapper.state()["filters"]["month_of_stay"]["4"]).toBe(true);
   });
@@ -116,7 +115,7 @@ describe('App', () => {
   it('user selects Jul-Sep', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="time_of_year"] input[name="7"]').simulate('change', {
-      target: {name: "7"}
+      target: { name: "7" },
     });
     expect(wrapper.state()["filters"]["month_of_stay"]["7"]).toBe(true);
   });
@@ -124,7 +123,7 @@ describe('App', () => {
   it('user selects Oct-Dec', () => {
     const wrapper = shallow(<App />);
     wrapper.find('div[className="time_of_year"] input[name="10"]').simulate('change', {
-      target: {name: "10"}
+      target: { name: "10" },
     });
     expect(wrapper.state()["filters"]["month_of_stay"]["10"]).toBe(true);
   });
@@ -133,7 +132,7 @@ describe('App', () => {
   it('user selects families', () => {
     const wrapper = shallow(<App />);
     wrapper.find('input[name="Families"]').simulate('change', {
-      target: {name: "Families"}
+      target: { name: "Families" },
     });
     expect(wrapper.state()["filters"]["trip_type"]["Families"]).toBe(true);
   });
@@ -141,7 +140,7 @@ describe('App', () => {
   it('user selects couples', () => {
     const wrapper = shallow(<App />);
     wrapper.find('input[name="Couples"]').simulate('change', {
-      target: {name: "Couples"}
+      target: { name: "Couples" },
     });
     expect(wrapper.state()["filters"]["trip_type"]["Couples"]).toBe(true);
   });
@@ -149,7 +148,7 @@ describe('App', () => {
   it('user selects solo', () => {
     const wrapper = shallow(<App />);
     wrapper.find('input[name="Solo"]').simulate('change', {
-      target: {name: "Solo"}
+      target: { name: "Solo" },
     });
     expect(wrapper.state()["filters"]["trip_type"]["Solo"]).toBe(true);
   });
@@ -157,7 +156,7 @@ describe('App', () => {
   it('user selects business', () => {
     const wrapper = shallow(<App />);
     wrapper.find('input[name="Business"]').simulate('change', {
-      target: {name: "Business"}
+      target: { name: "Business" },
     });
     expect(wrapper.state()["filters"]["trip_type"]["Business"]).toBe(true);
   });
@@ -165,7 +164,7 @@ describe('App', () => {
   it('user selects friends', () => {
     const wrapper = shallow(<App />);
     wrapper.find('input[name="Friends"]').simulate('change', {
-      target: {name: "Friends"}
+      target: { name: "Friends" },
     });
     expect(wrapper.state()["filters"]["trip_type"]["Friends"]).toBe(true);
   });
@@ -173,9 +172,8 @@ describe('App', () => {
   it('should change search term state upon user entry', () => {
     const wrapper = shallow(<App />);
     wrapper.find('input[name="searchTerm"]').simulate('change', {
-      target: {value: "Hawaii"}
+      target: { value: "Hawaii" },
     });
     expect(wrapper.state()["filters"]["search"]["searchTerm"]).toBe("Hawaii");
   });
-
 });
