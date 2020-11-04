@@ -1,12 +1,13 @@
-# Project Name
+# Hotellooo
 
-> Reviews component of Hotellooo
+- Reviews component of Hotellooo
+- Displays reviews for given hotel and allows users to filter on keywords, rating, time of stay, and traveler type
 
 ## Related Projects
 
-  - https://github.com/Hotellooo/calendar
-  - https://github.com/teamName/about
-  - https://github.com/teamName/photos-carousel
+- https://github.com/Hotellooo/calendar
+- https://github.com/teamName/about
+- https://github.com/teamName/photos-carousel
 
 ## Table of Contents
 
@@ -16,23 +17,35 @@
 
 ## Usage
 
-> To be used in conjunction with other Hotellooo components mentioned in related projects section
+- To be used in conjunction with other Hotellooo components mentioned in related projects section
 
 ## Requirements
 
-- Node 10.15.3
+- git
+- Node.js
+- MySQL
 
 ## Development
 
-> See installing dependencies instructions
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install
-npm react-dev
-npm seed
 ```
+# Clone this repository
+$ git clone https://github.com/Hotellooo/reviews.git
 
+# Go into root directory
+$ cd reviews
+
+# Install dependencies
+$ npm install
+
+# Run webpack in development mode
+$ npm run react-dev
+
+# Run server with nodemon
+$ npm run nodemon
+
+# Set up database schema
+$ npm run build-db
+
+# Seed database (optional)
+$ npm run seed-db
+```
